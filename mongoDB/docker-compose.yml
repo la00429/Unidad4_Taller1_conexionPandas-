@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mongodb:
+    build: .
+    image: mongodb_custom
+    container_name: mongodb_container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+      MONGO_INITDB_DATABASE: PersonDB
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./init_scripts:/docker-entrypoint-initdb.d
+
+volumes:
+  mongodb_data:
